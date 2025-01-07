@@ -1,12 +1,19 @@
 import { useState } from "react";
-import { TextField, Text, Separator } from "@radix-ui/themes";
-
+import {
+  TextField,
+  Text,
+  Separator,
+  Box,
+  Heading,
+  SegmentedControl,
+  Avatar,
+  Grid,
+} from "@radix-ui/themes";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { RxCaretSort } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-// import { Overview } from "./Overview";
 
 function App() {
   const [selectedItem, setSelectedItem] = useState("Alicia Koch");
@@ -21,11 +28,12 @@ function App() {
   ];
   const user = "shadcn";
   const userEmail = "m@example.com";
+
   return (
     <>
-      <nav className="w-screen border-b bg-white flex items-center justify-between px-4 py-2">
-        <div className="menu flex items-center space-x-6">
-          {/* Dropdown */}
+      <header className="w-screen border-b bg-white flex items-center justify-between px-4 py-2">
+        <section className="flex items-center space-x-6">
+          {/* Dropdown Menu */}
           <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
               <button className="flex items-center px-4 py-2 bg-gray-100 text-black rounded-lg hover:bg-gray-200">
@@ -69,7 +77,6 @@ function App() {
                     )}
                   </DropdownMenu.Item>
                 ))}
-
               {/* Teams */}
               <div className="px-4 py-2 text-sm text-gray-500">Teams</div>
               {options
@@ -87,14 +94,14 @@ function App() {
                     )}
                   </DropdownMenu.Item>
                 ))}
-
               <DropdownMenu.Item className="px-4 py-2 flex items-center gap-2 text-blue-500 hover:bg-gray-100 cursor-pointer">
                 <AiOutlinePlus />
                 Create Team
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
-          {/* Nav */}
+
+          {/* Navigation Menu */}
           <NavigationMenu.Root>
             <NavigationMenu.List className="flex space-x-4 cursor-pointer">
               <NavigationMenu.Item>
@@ -118,30 +125,27 @@ function App() {
                 </NavigationMenu.Link>
               </NavigationMenu.Item>
             </NavigationMenu.List>
-
             <NavigationMenu.Viewport />
           </NavigationMenu.Root>
-        </div>
-        {/* Search */}
-        <div className="flex items-center">
+        </section>
+
+        <section className="flex items-center">
           <TextField.Root placeholder="Search..."></TextField.Root>
 
-          {/* User Profile Dropdown */}
+          {/* Profile Dropdown */}
           <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-              <Text
-                as="span"
-                className="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8 ml-3 cursor-pointer"
-              >
-                <img src="/src/assets/01.png" alt="Profile" />
-              </Text>
+              <Avatar
+                className="ml-3"
+                src="/src/assets/01.png"
+                alt="Profile picture"
+              />
             </DropdownMenu.Trigger>
 
             <DropdownMenu.Content
               className="bg-white rounded-lg shadow-lg w-64 p-4"
               align="end"
             >
-              {/* Email */}
               <div className="px-4 pt-4 text-xs text-gray-800 font-semibold">
                 {user}
               </div>
@@ -169,8 +173,74 @@ function App() {
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
-        </div>
-      </nav>
+        </section>
+      </header>
+      <Box py="8" px="5">
+        <Heading as="h3" className="mb-8">
+          Dashboard
+        </Heading>
+        <SegmentedControl.Root defaultValue="overview" radius="large">
+          <SegmentedControl.Item value="overview">
+            Overview
+          </SegmentedControl.Item>
+          <SegmentedControl.Item value="analytics">
+            Analytics
+          </SegmentedControl.Item>
+          <SegmentedControl.Item value="reports">Reports</SegmentedControl.Item>
+          <SegmentedControl.Item value="notifications">
+            Notifications
+          </SegmentedControl.Item>
+        </SegmentedControl.Root>
+      </Box>
+      <Grid columns="4" gap="4" width="auto" className="px-5">
+        <Box className="bg-white rounded-lg shadow p-4">
+          <Text as="div" className="text-xl font-bold mb-2">
+            Total Revenue
+          </Text>
+          <Text as="div" className="text-4xl font-bold">
+            $45,231.89
+          </Text>
+          <Text as="div" className="text-gray-500 mt-2">
+            +20% from last month
+          </Text>
+        </Box>
+
+        <Box className="bg-white rounded-lg shadow p-4">
+          <Text as="div" className="text-xl font-bold mb-2">
+            Subscriptions
+          </Text>
+          <Text as="div" className="text-4xl font-bold">
+            +2350
+          </Text>
+          <Text as="div" className="text-gray-500 mt-2">
+            +80% from last month
+          </Text>
+        </Box>
+
+        <Box className="bg-white rounded-lg shadow p-4">
+          <Text as="div" className="text-xl font-bold mb-2">
+            Sales
+          </Text>
+          <Text as="div" className="text-4xl font-bold">
+            +1,234
+          </Text>
+          <Text as="div" className="text-gray-500 mt-2">
+            +19% from last month
+          </Text>
+        </Box>
+
+        <Box className="bg-white rounded-lg shadow p-4">
+          <Text as="div" className="text-xl font-bold mb-2">
+            Active Now
+          </Text>
+          <Text as="div" className="text-4xl font-bold">
+            +573
+          </Text>
+          <Text as="div" className="text-gray-500 mt-2">
+            +20 since last hour
+          </Text>
+        </Box>
+      </Grid>
     </>
   );
 }
