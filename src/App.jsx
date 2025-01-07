@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Box } from "@radix-ui/themes";
+import { TextField, Text, Separator } from "@radix-ui/themes";
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { RxCaretSort } from "react-icons/rx";
@@ -19,7 +19,8 @@ function App() {
     { name: "Acme Inc.", profilePic: true, type: "team" },
     { name: "Monsters Inc.", profilePic: true, type: "team" },
   ];
-
+  const user = "shadcn";
+  const userEmail = "m@example.com";
   return (
     <>
       <nav className="w-screen border-b bg-white flex items-center justify-between px-4 py-2">
@@ -125,9 +126,49 @@ function App() {
         <div className="flex items-center">
           <TextField.Root placeholder="Search..."></TextField.Root>
 
-          <span className="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8 ml-3">
-            <img src="/src/assets/01.png" alt="" />
-          </span>
+          {/* User Profile Dropdown */}
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <Text
+                as="span"
+                className="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8 ml-3 cursor-pointer"
+              >
+                <img src="/src/assets/01.png" alt="Profile" />
+              </Text>
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Content
+              className="bg-white rounded-lg shadow-lg w-64 p-4"
+              align="end"
+            >
+              {/* Email */}
+              <div className="px-4 pt-4 text-xs text-gray-800 font-semibold">
+                {user}
+              </div>
+              <div className="px-4 py-2 text-xs text-gray-600">{userEmail}</div>
+              <Separator my="1" size="4" />
+
+              {/* Menu Options */}
+              <div className="space-y-2">
+                {["Profile", "Billing", "Settings", "New Team"].map(
+                  (option) => (
+                    <DropdownMenu.Item
+                      key={option}
+                      className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                    >
+                      {option}
+                    </DropdownMenu.Item>
+                  )
+                )}
+              </div>
+              <Separator my="1" size="4" />
+
+              {/* Logout */}
+              <DropdownMenu.Item className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+                Logout
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </div>
       </nav>
     </>
