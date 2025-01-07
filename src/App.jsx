@@ -3,6 +3,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { RxCaretSort } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 
 function App() {
   const [selectedItem, setSelectedItem] = useState("Alicia Koch");
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <nav className="w-screen border-b bg-white flex items-center justify-between px-4 py-2">
-      {/* Dropdown Menu */}
+      {/* Dropdown */}
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button className="flex items-center px-4 py-2 bg-gray-100 text-black rounded-lg hover:bg-gray-200">
@@ -87,6 +88,34 @@ function App() {
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
+      {/* Nav */}
+      <NavigationMenu.Root>
+        <NavigationMenu.List className="flex space-x-4 cursor-pointer">
+          <NavigationMenu.Item>
+            <NavigationMenu.Link className="px-4 py-2 text-sm font-medium text-gray-900 hover:text-blue-500">
+              Overview
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <NavigationMenu.Link className="px-4 py-2 text-sm font-medium text-gray-900 hover:text-blue-500">
+              Customers
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <NavigationMenu.Link className="px-4 py-2 text-sm font-medium text-gray-900 hover:text-blue-500">
+              Products
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <NavigationMenu.Link className="px-4 py-2 text-sm font-medium text-gray-900 hover:text-blue-500">
+              Settings
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
+        </NavigationMenu.List>
+
+        <NavigationMenu.Viewport />
+      </NavigationMenu.Root>
+      {/* Search */}
     </nav>
   );
 }
