@@ -9,9 +9,9 @@ import {
   Avatar,
   Grid,
   Card,
-  Container,
   Flex,
 } from "@radix-ui/themes";
+
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { RxCaretSort } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa";
@@ -33,9 +33,43 @@ function App() {
   const user = "shadcn";
   const userEmail = "m@example.com";
 
+  const sales = [
+    {
+      profilePic: "./src/assets/01.png",
+      name: "Olivia Martin",
+      email: "olivia.martin@email.com",
+      amount: "1999.00",
+    },
+    {
+      profilePic: "./src/assets/02.png",
+      name: "Jackson Lee",
+      email: "jackson.lee@email.com",
+      amount: "39.00",
+    },
+    {
+      profilePic: "./src/assets/03.png",
+      name: "Isabella Nguyen",
+      email: "isabella.nguyen@email.com",
+      amount: "299.00",
+    },
+    {
+      profilePic: "./src/assets/04.png",
+      name: "William Kim",
+      email: "will@email.com",
+      amount: "99.00",
+    },
+    {
+      profilePic: "./src/assets/05.png",
+      name: "Sofia Davis",
+      email: "sofia.davis@email.com",
+      amount: "39.00",
+    },
+  ];
+
   return (
     <>
       <Flex direction={"column"} className="px-5 w-screen">
+        {/* Nav */}
         <Flex
           align={"center"}
           justify={"between"}
@@ -139,11 +173,13 @@ function App() {
             </NavigationMenu.Root>
           </Flex>
           <Flex align={"center"}>
+            {/* Search */}
             <TextField.Root placeholder="Search..."></TextField.Root>
 
             {/* Profile Dropdown */}
             <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild>
+                {/* Profile pic */}
                 <Avatar
                   className="ml-3"
                   src="/src/assets/01.png"
@@ -184,92 +220,154 @@ function App() {
             </DropdownMenu.Root>
           </Flex>
         </Flex>
-
-        <Box py="8">
-          <Heading as="h3" className="mb-8">
-            Dashboard
-          </Heading>
-          <SegmentedControl.Root defaultValue="overview" radius="large">
-            <SegmentedControl.Item value="overview">
-              Overview
-            </SegmentedControl.Item>
-            <SegmentedControl.Item value="analytics">
-              Analytics
-            </SegmentedControl.Item>
-            <SegmentedControl.Item value="reports">
-              Reports
-            </SegmentedControl.Item>
-            <SegmentedControl.Item value="notifications">
-              Notifications
-            </SegmentedControl.Item>
-          </SegmentedControl.Root>
-        </Box>
-
-        <Grid columns="4" gap="4" width="auto">
-          <Box>
-            <Card size="2">
-              <Text as="div" className="text-xl font-bold mb-2">
-                Total Revenue
-              </Text>
-              <Text as="div" className="text-4xl font-bold">
-                $45,231.89
-              </Text>
-              <Text as="div" className="text-gray-500 mt-2">
-                +20% from last month
-              </Text>
-            </Card>
+        <Box width={{ xl: "1600px" }} className="m-auto">
+          {/* Dashboard */}
+          <Box py="8">
+            <Heading as="h3" className="mb-8">
+              Dashboard
+            </Heading>
+            <SegmentedControl.Root defaultValue="overview" radius="large">
+              <SegmentedControl.Item value="overview">
+                Overview
+              </SegmentedControl.Item>
+              <SegmentedControl.Item value="analytics">
+                Analytics
+              </SegmentedControl.Item>
+              <SegmentedControl.Item value="reports">
+                Reports
+              </SegmentedControl.Item>
+              <SegmentedControl.Item value="notifications">
+                Notifications
+              </SegmentedControl.Item>
+            </SegmentedControl.Root>
           </Box>
+          <Grid columns={{ md: "4", sm: "2" }} gap="4" width="auto">
+            <Box>
+              <Card size="2">
+                <Text as="div" className="text-xl font-bold mb-2">
+                  Total Revenue
+                </Text>
+                <Text as="div" className="text-4xl font-bold">
+                  $45,231.89
+                </Text>
+                <Text as="div" className="text-gray-500 mt-2">
+                  +20% from last month
+                </Text>
+              </Card>
+            </Box>
 
-          <Box>
-            <Card size="2">
-              <Text as="div" className="text-xl font-bold mb-2">
-                Subscriptions
-              </Text>
-              <Text as="div" className="text-4xl font-bold">
-                +2350
-              </Text>
-              <Text as="div" className="text-gray-500 mt-2">
-                +80% from last month
-              </Text>
-            </Card>
-          </Box>
+            <Box>
+              <Card size="2">
+                <Text as="div" className="text-xl font-bold mb-2">
+                  Subscriptions
+                </Text>
+                <Text as="div" className="text-4xl font-bold">
+                  +2350
+                </Text>
+                <Text as="div" className="text-gray-500 mt-2">
+                  +80% from last month
+                </Text>
+              </Card>
+            </Box>
 
-          <Box>
-            <Card size="2">
-              <Text as="div" className="text-xl font-bold mb-2">
-                Sales
-              </Text>
-              <Text as="div" className="text-4xl font-bold">
-                +1,234
-              </Text>
-              <Text as="div" className="text-gray-500 mt-2">
-                +19% from last month
-              </Text>
-            </Card>
-          </Box>
+            <Box>
+              <Card size="2">
+                <Text as="div" className="text-xl font-bold mb-2">
+                  Sales
+                </Text>
+                <Text as="div" className="text-4xl font-bold">
+                  +1,234
+                </Text>
+                <Text as="div" className="text-gray-500 mt-2">
+                  +19% from last month
+                </Text>
+              </Card>
+            </Box>
 
-          <Box>
-            <Card size="2">
-              <Text as="div" className="text-xl font-bold mb-2">
-                Active Now
-              </Text>
-              <Text as="div" className="text-4xl font-bold">
-                +573
-              </Text>
-              <Text as="div" className="text-gray-500 mt-2">
-                +20 since last hour
-              </Text>
-            </Card>
-          </Box>
-        </Grid>
+            <Box>
+              <Card size="2">
+                <Text as="div" className="text-xl font-bold mb-2">
+                  Active Now
+                </Text>
+                <Text as="div" className="text-4xl font-bold">
+                  +573
+                </Text>
+                <Text as="div" className="text-gray-500 mt-2">
+                  +20 since last hour
+                </Text>
+              </Card>
+            </Box>
+          </Grid>
+          <Flex
+            direction={{ initial: "column", md: "row" }}
+            gapX={"4"}
+            gapY={{ initial: "0", md: "2" }}
+          >
+            {/* Overview section */}
+            <Box width={{ initial: "100%", md: "60%" }} className="py-5">
+              <Card size="2">
+                <Heading size="3" className="pb-4">
+                  Overview
+                </Heading>
+                <Overview />
+              </Card>
+            </Box>
+            {/* Sales section */}
+            <Box
+              width={{ initial: "100%", md: "40%" }}
+              className="lg:py-5 py-0"
+            >
+              <Card size="2">
+                <Heading size="3" className="pb-2">
+                  Recent Sales
+                </Heading>
+                <Text as="p" size={"2"}>
+                  You made 265 sales this month.
+                </Text>
+                <Box as="ul" className="sales-list" mt={3}>
+                  {sales.map((sale, index) => (
+                    <Box
+                      as="li"
+                      key={index}
+                      className="sale-item flex items-center justify-between py-2"
+                    >
+                      {/* Profile picture and details */}
+                      <Flex align={"center"} justify={"between"}>
+                        <Flex>
+                          {sale.profilePic && (
+                            <Avatar
+                              className="mr-2"
+                              size="small"
+                              src={
+                                sale.profilePic !== true
+                                  ? sale.profilePic
+                                  : undefined
+                              }
+                              alt={sale.name}
+                              fallback={sale.name.charAt(0)}
+                            />
+                          )}
+                          <Box>
+                            <Text as="p" size="2" weight="bold">
+                              {sale.name}
+                            </Text>
+                            <Text as="p" size="2" color="muted">
+                              {sale.email}
+                            </Text>
+                          </Box>
+                        </Flex>
 
-        <Box maxWidth="600px" className="py-5">
-          <Card size="2">
-            <Text as="p" size="3">
-              <strong>Overview</strong>
-            </Text>
-            <Overview />
-          </Card>
+                        {/* Sale amount */}
+                        <Text as="p" size="2" weight="bold">
+                          +${sale.amount}
+                        </Text>
+                      </Flex>
+                    </Box>
+                  ))}
+                </Box>
+              </Card>
+            </Box>
+          </Flex>
         </Box>
       </Flex>
     </>
